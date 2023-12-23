@@ -1,0 +1,23 @@
+form.mainForm  {
+    width: 50%; 
+    margin: 0 auto; 
+    margin-top: 3%;
+    margin-bottom: 3%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+/* Style the labels */
+label {
+    font-weight: normal;
+}
+
+/* Style the input fields */
+input[type="text"], input[type="number"],select {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

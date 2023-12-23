@@ -1,0 +1,26 @@
+.popup {
+    display: none;
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; 
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.404);
+    width: 90%;
+}
+.close-popup-btn{
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    max-width: 15%;
+    background-color: white;
+}
+td.buttcont{
+    background-color: white;
+    text-align: center;
+    border-top: none;
+    padding-bottom: 50px;
+}

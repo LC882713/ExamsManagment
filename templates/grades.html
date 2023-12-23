@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+        <title>Grades</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/{{current_user.role}}Menu">Università Astra</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/{{current_user.role}}Menu">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <form action="/logout" method="GET">
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/information">{{current_user.name}}</a>
+                    
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <div class=" text-center">
+        <h1>Grades</h1>
+        <p style="width: 70%; margin: auto; color: gray;">
+            Here you can add the grade at the students who took the tests you created.
+        </p>
+    </div>
+    <br>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Id test</th>
+                <th scope="col">Name Test</th>
+                <th scope="col">Name Student</th>
+                <th scope="col">Bonus</th>
+                <th scope="col">Date</th>
+                <th scope="col">Register Grade</th>
+            <tr>
+        </thead>
+        <tr>
+            
+        </tr>
+        {% for test in tests %}
+        <tr> 
+            <td>{{ test.id_test}}</td>
+            <td>{{ test.Test_Name}}</td>
+            <td>{{ test.User_Name}}</td>
+            <td>{{ test.bonus}}</td>
+            <td>{{ test.verb_date}}</td>
+            <td>
+                <form class="mainForm" action="/professor/grades" method="POST">    
+                    {{ form.hidden_tag() }}               
+                    <div style="display: none;">{{ form.id_subscribes (value=test.id_registrations) }}</div>
+                    {{ form.score(class="form-control form-control-sm") }}
+                    <label class="form-label" for="score">Insert the Score:</label><br> 
+                    {{ form.submit (class="btn btn-outline-primary")}}
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    
+    </body>
+</html>

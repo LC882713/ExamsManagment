@@ -1,0 +1,40 @@
+html,body{
+    background: #38d39f;
+}
+
+.box{
+    display: block;
+}
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+}
+.card-registration .select-arrow {
+    top: 13px;
+}
+form.mainForm  {
+    background: #ffffff;
+    width: 50%; 
+    margin: 0 auto; 
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+/* Style the labels */
+label {
+    font-weight: normal;
+}
+
+/* Style the input fields */
+input[type="text"],input[type="number"], input[type="password"],select {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

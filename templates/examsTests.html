@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+        <title>Tests</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/form.css') }}">
+    <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/{{current_user.role}}Menu"> Università Astra</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/{{current_user.role}}Menu">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <form action="/logout" method="GET">
+                            <a class="nav-link" href="/logout">Logout</a>
+                            
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/information">{{current_user.name}}</a>
+                    
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+  {%for exam in exams %} 
+    <h2 style="text-align: center;">Create the tests for the following exam: <span style="color: #0f986a">{{exam.name}}</span></h2>
+    <form  class="mainForm" id="examsTests" action="/professor/exams/examsTests{{ num_tests }}" method="POST" >
+        {{ form.hidden_tag() }}
+        <div style="display: none;">{{ form.id_exams(value=exam.id_exam) }}</div>
+        <h3 style="color:#0f986a">Test Creation number:(DESC) {{num_tests}}</h3> <br>
+        {{ form.name.label }} {{ form.name() }}
+        {{ form.bonus.label }} {{ form.bonus() }}
+        {{ form.type.label }} {{ form.type()}}<br>
+        {{ form.grade_weight.label }} {{ form.grade_weight()}}
+        <div class="col" style="text-align: center;"> 
+            {{ form.submit (class="btn btn-outline-primary")}}
+        </div> 
+                            
+    </form>
+    <p style="text-align: center;">*The sum of the weight for all tests must be 100</p>
+  {% endfor %} 
+
+  </body>
+</html>
+

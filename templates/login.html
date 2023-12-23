@@ -1,0 +1,54 @@
+<html>
+  <head>
+	<link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+  	<title>Login</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='/css/login.css') }}">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+  </head>
+  
+  <body>
+	
+	<div class="container" style="background-repeat: no-repeat; background-image:  url(/static/img/wave.png)">
+		<div class="img"><img src="{{url_for('static', filename='img/bg.svg')}}"/></div>
+		<div class="login-content">
+
+			<form action="/login", method="POST">
+				{{ form.csrf_token }}
+        		<img src="{{url_for('static', filename='img/avatar.svg')}}"/>
+				<h2 class="title">Login</h2>
+
+           		<div class="input-div one">
+           		   <div class="i"><i class="fas fa-user"></i></div>
+           		   <div class="div"> {{ form.email (placeholder="Email") }}</div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"><i class="fas fa-lock"></i></div>
+           		   <div class="div"> {{ form.password (placeholder="Password") }}</div>
+            	</div>
+				<div class="rememberMe">
+					{{ form.remember() }}
+					<label for="remember">Remember Me</label>
+				</div>
+            	<a href="/signup">Don't have an account?</a>
+            	{{ form.submit (class="btn") }}
+				
+            </form>
+
+        </div>
+    </div>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+		<ul class="flash-messages">
+			{% for message in messages %}
+			<li class="flash-message">{{ message }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+  	{% endwith %}
+
+	<script src="{{ url_for('static', filename='/js/login.js')}}"></script>
+
+	</body>
+    
+</html>

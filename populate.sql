@@ -1,0 +1,4 @@
+INSERT INTO users (id, name, surname, email, password, gender, role) VALUES (1001, 'naruto', 'muto', 'naruto.muto@gmail.com','$2a$12$Q.R2jQdv4fJM5SPI.1pFzOIyAozV3C9nPyYa5g7qBQlW6YvIuouiq', 'M', 'professor');
+INSERT INTO users (id, name, surname, email, password, gender, role) VALUES (1002, 'goku', 'sayan', 'goku.sayan@gmail.com', '$2a$12$V/v2UDfyDEVasqtq4AGRT.r9mF48L2ln3boOpHW8Tu4S16u6lj7Wu', 'M',  'student');
+INSERT INTO users (id, name, surname, email, password, gender, role) VALUES (1003, 'simone', 'melone', 'simone.melone@gmail.com','$2a$12$.8fSfprKlaNFKpB.P0AELuNJnH10XqhpiJ7X7EtFABIR7mDGXsNLO', 'M', 'professor');
+INSERT INTO users (id, name, surname, email, password, gender, role) VALUES (1004, 'bilico', 'basilico', 'bilico.basilico@gmail.com','$2a$12$dxKPebOTIQNX.fzMTSRFJOEiZ4OTZ3AY4FjFBVRyDpdIE6lREryEG', 'M', 'student');

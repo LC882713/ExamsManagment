@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<head>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+    <title>Error Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
+        body {
+            height: 100vh;
+            width: 100vw;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        .error-message {
+            background-color: #fff;
+            top: 25%;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.463);
+            max-width: 600px;
+            margin: 0 auto;
+            position: absolute;
+            left: 0;
+            right: 0;
+            
+        }
+        .container-no{
+            text-align: center;
+        }
+        .container-no h1{
+            font-family: 'Montserrat', sans-serif;
+            font-size: 50px;
+        }
+        .container-no p{
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+        }
+        .containererror{         
+            height: 100%;
+            width: 100%;
+            background-repeat: no-repeat; 
+            background-image:  url(/static/img/error.jpg); 
+            background-size: cover;
+            opacity: 0.6;
+        }
+        .try-again-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .try-again-link:hover {
+            background-color: white;
+            color: #004fb6;
+            text-decoration: none;
+            border: 2px solid #004fb6;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/{{current_user.role}}Menu">Università Astra</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/{{current_user.role}}Menu">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <form action="/logout" method="GET">
+                            <a class="nav-link" href="/logout">Logout</a>
+                            
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/information">{{current_user.name}}</a>
+                    
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="containererror"></div>
+        <div class="container-no">
+        <div class="error-message">
+            <h1>Oops!</h1>
+            <p>If you are seeing this page, it's beacuse you tried to insert some incorrect data, or the page you are trying to access is empty.</p>
+            <p>Please go back and try again.</p>
+            <a href="javascript:history.back()" class="try-again-link">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>

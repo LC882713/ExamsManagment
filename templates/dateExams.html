@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+        <title>ExamsDate</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/{{current_user.role}}Menu">Università Astra</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/{{current_user.role}}Menu">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <form action="/logout" method="GET">
+                            <a class="nav-link" href="/logout">Logout</a>
+                            
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/information">{{current_user.name}}</a>
+                    
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+    <div class=" text-center">
+      <h2>Here you can set the date for the tests:</h2>
+    </div>
+
+    <br>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>Test name</th>
+                <th>id_test</th>
+                <th>type</th>
+                <th>Select date</th>
+            
+            </tr>
+            {% for test in tests %}
+            <tr>
+                <td>{{ test.name }}</td>
+                <td>{{ test.id_test }}</td>
+                <td>{{ test.type }}</td>
+                <td> 
+                    <form class="mainForm" id="form" action="/professor/dateExams" method="POST">
+                        {{ form.hidden_tag() }}
+                    
+                        {{ form.selected_date.label }}
+                        {{ form.selected_date(class="form-control datepicker") }} 
+                        <div style="display: none;">{{ form.id_tests(value=test.id_test) }}</div>
+                        <br>
+                        {{ form.submit(class="btn btn-outline-primary btn-sm") }}
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var dateInput = document.querySelector('.datepicker');
+            
+            var today = new Date();
+            var minDate = today.toISOString().split('T')[0];
+            dateInput.setAttribute('min', minDate);
+           
+            dateInput.addEventListener('input', function () {
+                var selectedDate = new Date(dateInput.value);
+                var dayOfWeek = selectedDate.getDay();
+
+                if (dayOfWeek === 0 || dayOfWeek === 6) {
+                    alert('Please select a weekday (Monday to Friday).');
+                    dateInput.value = ''; 
+                }
+            });
+        });
+    </script>
+    </body>
+</html>

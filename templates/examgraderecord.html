@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+        <title>Exam grades record</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/examgraderecord.css')}}">
+    </head>
+    <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/{{current_user.role}}Menu">Università Astra</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/{{current_user.role}}Menu">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <form action="/logout" method="GET">
+                            <a class="nav-link" href="/logout">Logout</a>
+                            
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/information">{{current_user.name}}</a>
+                    
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <div class="text-center">
+        <h2>Exams record</h2>
+        <p style="width: 70%; margin: auto; color: gray;">list of students who are in a position to have the exam recorded, have passed the n tests, showing for each student the tests passed to pass that exam 
+        </p>
+    </div>
+    <br>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>Exam ID</th>
+                <th>Exam Name</th>
+                <th>Number of Tests</th>
+                <th>Student Name</th>
+                <th>Total grade</th>
+                <th>Show Tests</th>
+                <th>Register Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set unique_exam_student_ids = [] %}
+            {% for item in lists %}
+                {% if (item.id_exam, item.id) not in unique_exam_student_ids %}
+                    <tr class="exam-row" data-exam-id="{{ item.id_exam }}" data-student-id="{{ item.id }}">
+                        <td>{{ item.id_exam }}</td>
+                        <td>{{ item.exam_name }}</td>
+                        <td>{{ item.num_tests }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ total_grade_sums[(item.id, item.id_exam)]|round(1) }}</td>
+                        <td><button class="btn btn-link show-details-btn"><i class="fas fa-search"></i></button></td>
+                        <td>
+                            <form class="mainForm" id="form" action="/professor/examgraderecord" method="POST">
+                                {{ form.hidden_tag() }}
+                                <div style="display: none;">
+                                    {{ form.id_students (value=item.id) }}
+                                    {{ form.id_exam (value=item.id_exam) }}
+                                    {{ form.total_grade(value=(total_grade_sums[(item.id, item.id_exam)]|round(0))|int) }}
+                                </div>
+        
+                                {{ form.submit(class="btn btn-outline-primary btn-sm", type="submit", value="Register") }}                           
+                
+                            </form>
+                        </td>
+                    </tr>
+                    
+                    {% set _ = unique_exam_student_ids.append((item.id_exam, item.id)) %}
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Display Exam Details -->
+    <div class="cont1">
+        <div class="cont2">
+            {% for unique_exam_student_id in unique_exam_student_ids %}
+                <table class="table details" style="display: none;" data-exam-id="{{ unique_exam_student_id[0] }}" data-student-id="{{ unique_exam_student_id[1] }}">
+                    <thead class="thead" style="background-color: #38d39f;">
+                        <tr>
+                            <th>Id Student</th>
+                            <th>Student Name</th>
+                            <th>Test Name</th>
+                            <th>Test Type</th>
+                            <th>Date</th>
+                            <th>Bonus</th>
+                            <th>Grade weight</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in lists %}
+                            {% if item.id_exam == unique_exam_student_id[0] and item.id == unique_exam_student_id[1] %}
+                                <tr>
+                                    <td>{{ item.id}}</td>
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.test_name }}</td>
+                                    <td>{{ item.type }}</td>
+                                    <td>{{ item.verb_date }}</td>
+                                    <td>{{ item.bonus }}</td>
+                                    <td>{{ item.grade_weight }}</td>
+                                    <td>{{ item.grade }}</td>                                   
+                                </tr>
+                                
+                            {% endif %}
+                        {% endfor %}
+                        <td class="buttcont"><button class="btn btn-outline-danger close-popup-btn">Close</button></td>
+                    </tbody>
+
+                </table>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var showDetailsButtons = document.querySelectorAll('.show-details-btn');
+            var detailsTables = document.querySelectorAll('.details');
+
+            showDetailsButtons.forEach(function (showDetailsButton) {
+                showDetailsButton.addEventListener('click', function (event) {
+                    event.preventDefault(); 
+
+                    var clickedExamRow = this.closest('.exam-row');
+                    var clickedExamId = clickedExamRow.getAttribute('data-exam-id');
+                    var clickedStudentId = clickedExamRow.getAttribute('data-student-id');
+
+                    detailsTables.forEach(function (detailsTable) {
+                        var tableExamId = detailsTable.getAttribute('data-exam-id');
+                        var tableStudentId = detailsTable.getAttribute('data-student-id');
+
+                        if (tableExamId === clickedExamId && tableStudentId === clickedStudentId) {
+                            detailsTable.style.display = 'table';
+                            detailsTable.classList.add('popup');
+
+                            var closeButton = detailsTable.querySelector('.close-popup-btn');
+                            closeButton.addEventListener('click', function () {
+                                detailsTable.style.display = 'none';
+                                detailsTable.classList.remove('popup');
+                            });
+                        } else {
+                            detailsTable.style.display = 'none';
+                            detailsTable.classList.remove('popup');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    </body>
+</html>

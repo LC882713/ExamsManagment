@@ -1,0 +1,43 @@
+.modal-container {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #0f986a;
+    border-radius: 10px;
+    z-index: 1000;
+    max-width: 70%;
+}
+
+.modal-container.active {
+    display: block;
+}
+form.mainForm  {
+    width: 80%; 
+    margin: 0 auto; 
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+label {
+    font-weight: normal;
+}
+
+/* Style the input fields */
+input[type="text"], input[type="number"],select {
+    width: 25%;
+    padding: 5px;
+    
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.test-fields{
+    padding:20px;
+    border-bottom: 1px solid #0f986a;
+}
+.test-fields p{
+    color: #0f986a;
+}

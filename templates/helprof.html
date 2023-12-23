@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+        <title>helProf</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
+            h2{
+            font-family: 'Montserrat', sans-serif;
+            font-size: 50px;
+            }
+            p{
+                font-size: 28px;
+            }
+
+        </style>
+    </head>
+    <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/{{current_user.role}}Menu">Università Astra</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/{{current_user.role}}Menu">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <form action="/logout" method="GET">
+                            <a class="nav-link" href="/logout">Logout</a>
+                            
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/information">{{current_user.name}}</a>
+                    
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <br>
+    <div class=" text-center" style="width: 50%; margin: auto;">
+      <h2>Here is the explanation of the pages:</h2>
+        <p>
+            Exams Creation: <br>
+            On this page, the professor can generate the exams of their choice and the respective components.
+            <br>
+            Tests Dates Assignment:<br>
+            On this page, the professor can determine the dates on which the previously created exams will take place.
+            <br>
+            Tests Created: <br>
+            On this page, the professor can view and modify the list of exams they have created, along with the assigned dates.
+            <br>
+            Tests Grade Registration: <br>
+            On this page, the professor will find a list of students who participated in their exam, allowing them to input the assigned grades.
+            <br>
+            Students Status Records: <br>
+            On this page, the professor can access a list of students along with their completed exams, even if the grades are insufficient, as long as the validity period is still active.
+            <br>
+            Tests Grade Registration: <br>
+            On this page, the professor can view the list of students eligible for exam grade registration and proceed to record the grades.
+            <br>
+            Account: <br>
+            On this page, the professor can log in to access their profile.
+            <br>
+            Help: <br>
+            This page provides explanations for all menu pages and outlines specific rules that the professor must adhere to.
+        </p>
+    </div>
+    </body>
+</html>

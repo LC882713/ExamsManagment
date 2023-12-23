@@ -1,0 +1,155 @@
+<html>
+    <head>
+      <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+        <title>Università Astra</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+       
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+
+    </head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light classNavbar">
+    <div class="container">
+        <a class="navbar-brand" href="/{{current_user.role}}Menu">Università Astra</a>
+        <div class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          
+                <div class="dropdown">
+                  <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #32be8f;">Menu</a>
+                  <div class="dropdown-content">
+                      <a class="dropdown-item" href="/{{current_user.role}}Menu">Home</a>
+                      <a class="dropdown-item" href="/information">Profile</a>
+                      <a class="dropdown-item" href="/logout">Logout</a>
+                  </div>
+                </div>
+        </div>
+
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/{{current_user.role}}Menu">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/information">Profile</a>
+                </li>
+                
+                <form class="nav-item" action="/logout" method="GET">
+                        <a class="nav-link" href="/logout">Logout</a>
+                        
+                    </form>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero2" class="d-flex align-items-center">
+    <div class="container" data-aos="zoom-out">
+        <h1>Welcome <span> {{current_user.name}} </span></h1>
+    </div>
+  </section><!-- End Hero -->
+  <main id="main">
+
+    <!-- ======= Featured Services Section ======= -->
+    <section id="featured-services" class="featured-services">
+      <div class="container" data-aos="fade-up">
+
+        
+        <div class="row">
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h4 class="title"><a href="/professor/exams">Exams Creation</a></h4>
+              <p class="description">Create the exam and the tests it consists of.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h4 class="title"><a href="/professor/dateExams">Tests dates assignment</a></h4>
+              <p class="description">Assign a session date to the tests created.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h4 class="title"><a href="/professor/tests_created">Tests Created</a></h4>
+              <p class="description">Here you can seee the list of tests you created and their associated dates.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+              <div class="icon"><i class="bx bxl-dribbble"></i></div>
+              <h4 class="title"><a href="/professor/grades">Tests grades registration</a></h4>
+              <p class="description">View the list of tests taken by students and enter ratings.</p>
+            </div>
+          </div>
+
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h4 class="title"><a href="/professor/studentStatus">Students status record</a></h4>
+              <p class="description">View the student's test and exam record.</p>
+            </div>
+          </div>  
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+              <div class="icon"><i class="bx bx-file"></i></div>
+              <h4 class="title"><a href="/professor/examgraderecord">Exams grades registration</a></h4>
+              <p class="description">Enter the final grade of the exams taken by the students.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h4 class="title"><a href="/information">Account</a></h4>
+              <p class="description">Here you can access your profile.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h4 class="title"><a href="/professor/helprof">Help</a></h4>
+              <p class="description">Here is an explanation of the pages in this web application.</p>
+            </div>
+          </div>
+
+        </div>
+        
+      </div>
+    </section>
+
+<footer id="footer">
+    <div class="footer-top">
+     
+        <div class="row">
+            <div class="col-lg-3 col-md-6 footer-contact">
+                <h3>Università<span> Astra</span></h3>
+                <p>
+                    A108 Adam Street <br>
+                    New York, NY 535022<br> 
+                    <strong>Phone:</strong> +39 358 461 3399<br>
+                    <strong>Email:</strong> info@example.com<br>
+                </p>
+            </div>
+        </div>
+    
+    </div>
+  </footer><!-- End Footer -->
+
+</body>
+
+</html>
+

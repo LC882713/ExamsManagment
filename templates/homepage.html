@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+        <title>Università Astra</title>
+        <!-- Link to Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" id="picostrap-styles-css" href="https://cdn.livecanvas.com/media/css/library/bundle.css" media="all">
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+
+    </head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">Università Astra</a>
+
+        <div class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            
+                <div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #444444;">Menu</a>
+                    <div class="dropdown-content">
+                        <a class="dropdown-item" href="/login">Login</a>
+                        <a class="dropdown-item" href="/signup">Signup</a>
+                    </div>
+                </div>
+        </div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="/login"  class="nav-link" >Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Signup</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container" data-aos="zoom-out">
+        <div style="margin-top: 20%;">
+        <h1>Università <span>Astra</span></h1>
+        <h2>Formiamo le menti di domani</h2>
+        </div>
+    </div>
+  </section>
+
+  <main id="main">
+    <div class="container col-xxl-8 px-4 py-5">
+      <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+          <div class="col-10 col-sm-8 col-lg-6">
+              <img src="/static/img/image2.jpg">
+              <img src="/static/img/image4.jpg">
+              <img src="/static/img/image3.jpg">
+          </div>
+          <div class="col-lg-6">
+              <div class="lc-block mb-3">
+                  <div editable="rich">
+                      <h2 class="fw-bold display-5">Riguardo la nostra università:</h2>
+                  </div>
+              </div>
+    
+              <div class="lc-block mb-3">
+                  <div editable="rich">
+                      <p class="lead">L'Università Astra è un'istituzione d'avanguardia che ridefinisce l'educazione superiore nel XXI secolo. Situata in un campus moderno e accogliente, questa università si distingue per l'approccio all'avanguardia alla formazione e per l'attenzione costante all'evoluzione delle esigenze globali e alle sfide emergenti.
+                      </p><p class="lead">
+                        Missione e Valori:
+                        La nostra missione è quella di fornire un'educazione di alta qualità che prepari gli studenti a eccellere in un mondo in rapida trasformazione. I nostri valori fondamentali includono l'innovazione, l'accessibilità, l'integrità e la collaborazione.
+                      </p><p class="lead">
+                        Programmi Accademici Avanzati:
+                        Offriamo una vasta gamma di programmi accademici che spaziano dalle scienze umane alle tecnologie emergenti, garantendo che gli studenti abbiano accesso a un'istruzione di livello mondiale in settori chiave. I nostri docenti sono esperti nel loro campo e sono impegnati a guidare gli studenti verso l'eccellenza.
+                      </p><p class="lead">
+                        Tecnologie all'Avanguardia:
+                        L'Università Innovativa del Futuro integra tecnologie all'avanguardia in ogni aspetto dell'esperienza educativa. Dalle aule intelligenti ai laboratori virtuali, forniamo agli studenti gli strumenti necessari per affrontare le sfide del futuro.
+                      </p><p class="lead">
+                        
+                        L'Università Innovativa del Futuro è un faro di eccellenza nell'istruzione superiore, preparando gli studenti a guidare il futuro con intelligenza, creatività e responsabilità. Se sei pronto a fare parte di una comunità che abbraccia l'innovazione e l'evoluzione, l'Università Innovativa del Futuro è il tuo prossimo passo verso il successo.
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="footer-top">
+     
+        <div class="row">
+            <div class="col-lg-3 col-md-6 footer-contact">
+                <h3>Università<span> Astra</span></h3>
+                <p>
+                    A108 Adam Street <br>
+                    New York, NY 535022<br> 
+                    <strong>Phone:</strong> +39 358 461 3399<br>
+                    <strong>Email:</strong> info@example.com<br>
+                </p>
+            </div>
+        </div>
+    
+    </div>
+  </footer>
+
+</body>
+</html>

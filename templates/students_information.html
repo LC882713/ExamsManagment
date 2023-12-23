@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+        <title>Università Astra</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/information.css') }}">
+       
+    </head>
+    <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/{{current_user.role}}Menu">Università Astra</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/{{current_user.role}}Menu">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <form action="/logout" method="GET">
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </form>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+    <div style="text-align: center;">
+    <h2>Your Informations:</h2>
+    <br>
+        <table class="table">
+            <tr>
+                <th  scope="col">ID</th>
+                <td>{{ current_user.id }}</td>
+            </tr>   
+            
+            <tr>
+                <th scope="col">Name</th>
+                <td>{{ current_user.name }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Surname</th>
+                <td>{{ current_user.surname }}</td>
+            </tr>
+
+            <tr><th scope="col">Email</th>
+                <td>{{ current_user.email }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Gender</th>
+                <td>{{ current_user.gender }}</td>
+            </tr>
+                <tr><th scope="col">Role</th>
+                <td>{{ current_user.role }}</td>
+
+        </table>
+    </div>
+    </body>
+    <p>If you have some problem or you need to change any of the data you registered with contact the secretary:
+        <br><strong>Phone:</strong> +39 3584613399 
+        <strong>Email:</strong> info@example.com
+    </p>
+</html>
+
+
+

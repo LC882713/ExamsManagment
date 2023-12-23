@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+        <title>Exams</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/form.css') }}">
+        <style>
+            .butto{
+                padding: 15px;
+            }
+            .justTest{
+                color:#0f986a;
+                border-color: #0f986a;
+            }
+            .justTest:hover{
+                background-color:#0f986a;
+                color: white;
+                border: none;
+            }
+        </style>
+    </head>
+    <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"><!--"navbar navbar-dark bg-success"-->
+        <div class="container">
+            <a class="navbar-brand" href="/{{current_user.role}}Menu">Università Astra</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/{{current_user.role}}Menu">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <form action="/logout" method="GET">
+                            <a class="nav-link" href="/logout">Logout</a>
+                            
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/information">{{current_user.name}}</a>
+                    
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="butto">
+    <a href="/professor/justtest"><button class="btn btn-outline-primary btn-sm justTest" >Create Just the Tests</button></a>
+    </div>
+    <h2 style="text-align: center;">Create the exam and its tests: </h2>
+    
+    <form class="mainForm" id="exams" action="/professor/exams" method="POST">
+      <h3 style="color:#0f986a">Exam Creation:</h3><br>
+        {{ form.hidden_tag() }}
+        {{ form.examName.label }} {{ form.examName }}
+        {{ form.credits.label }} {{ form.credits }}
+        {{ form.num_tests.label }} {{ form.num_tests }}
+        <div class="col" style="text-align: center;"> 
+          {{ form.submit (class="btn btn-outline-primary")}}
+        </div>
+    </form>
+
+   
+
+    </body>
+</html>

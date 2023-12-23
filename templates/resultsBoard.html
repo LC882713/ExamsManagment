@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+        <title>Results</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/{{current_user.role}}Menu">Università Astra</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/{{current_user.role}}Menu">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <form action="/logout" method="GET">
+                            <a class="nav-link" href="/logout">Logout</a>
+                            
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/information">{{current_user.name}}</a>
+                    
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+    <div class=" text-center">
+      <h2>Results of the tests carried out</h2><br>
+      <p style="width: 70%; margin: auto; color: gray;">Here you can see the results of the tests that you tried and you passed.
+      </p>
+    </div>
+    <br>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>Test Id</th>
+                <th>Test Name</th>
+                <th>Test type</th>
+                <th>Date</th>              
+                <th>Bonus</th>
+                <th>Professor Id</th>
+                <th>Professor Name </th>
+                <th>Grade</th>
+                
+            </tr>
+        {% for list in lists %}
+        <tr>
+            <td>{{ list.id_tests}}</td>
+            <td>{{ list.test_name}}</td>
+            <td>{{ list.type}}</td>
+            <td>{{ list.verb_date}}</td>           
+            <td>{{ list.bonus}}</td>
+            <td>{{ list.professor_id}}</td>
+            <td>{{ list.professor_name}}</td>
+            <td>{{ list.grade}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    </body>
+</html>
